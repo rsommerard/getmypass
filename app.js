@@ -1,6 +1,6 @@
 $(function() {
   var passwordGenerated = "";
-
+  
   var bindPasswordRowEvents = function() {
     $("#passwordRow").bind("touchstart", function() {
       $("#password").text(passwordGenerated);
@@ -9,6 +9,22 @@ $(function() {
       $("#password").text("############");
     });
   };
+  
+  $("#site").keyup(function (e) {
+    var keyCode = e.keyCode || e.which;
+
+          if (keyCode == 13) {
+            $("#passphrase").focus();
+          }
+  });
+  
+  $("#passphrase").keyup(function (e) {
+    var keyCode = e.keyCode || e.which;
+
+          if (keyCode == 13) {
+            $("#passphrase").blur();
+          }
+  });
 
   var unbindPasswordRowEvents = function() {
     $("#passwordRow").unbind("touchstart");
@@ -36,11 +52,19 @@ $(function() {
     unbindPasswordRowEvents();
     unbindGetMyPassRowEvent();
   };
+  
+  $(document).bind("visibilitychange", function () {
+    if (document.hidden) {
+      reset();
+    }
+  });
 
   var generatePassword = function(site, passphrase) {
-    passwordGenerated = CryptoJS.SHA256(site + passphrase);
-    passwordGenerated = passwordGenerated.toString();
-    passwordGenerated = passwordGenerated.substr(-12);
+    var str = site + passphrase;
+    var hash = CryptoJS.SHA256(str);
+    var index = str.length;
+    passwordGenerated = hash.toString(CryptoJS.enc.Base64);
+    passwordGenerated = passwordGenerated.substr(-((index + 8)%passwordGenerated.length), 8)
   };
 
   reset();
