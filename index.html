@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+
+    <title>GetMyPass</title>
+
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+
+    <script src="js/lib/jquery-2.1.1.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/sha256.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="container-fluid text-center" id="container">
+      <div class="row" id="getMyPassRow">
+        <div class="col-xs-12">
+          <h1>GetMyPass</h1>
+        </div>
+      </div>
+      <div class="row content" id="formRow">
+        <div class="col-xs-12">
+              <div class="form-group">
+                <input type="text" id="site" class="form-control" placeholder="Site">
+              </div>
+              <div class="form-group">
+                <input type="password" id="passphrase" class="form-control" placeholder="Passphrase">
+              </div>
+              <div class="row" id="generateRow">
+                <div class="col-xs-12">
+                  <h2 id="generate">Generate</h2>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="row content" id="passwordRow">
+        <div class="col-xs-12">
+          <h2 id="password"></h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
