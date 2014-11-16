@@ -6,7 +6,7 @@ $(function() {
       $("#password").text(passwordGenerated);
     });
     $("#passwordRow").bind("touchend", function() {
-      $("#password").text("############");
+      $("#password").text("########");
     });
   };
   
@@ -60,6 +60,7 @@ $(function() {
   });
 
   var generatePassword = function(site, passphrase) {
+    
     var str = site + passphrase;
     var hash = CryptoJS.SHA256(str);
     var index = str.length;
@@ -70,9 +71,19 @@ $(function() {
   reset();
 
   $("#generate").bind("touchend", function() {
+    if($("#site").val().length == 0) {
+      alert("Site need to be specified.");
+      return;
+    }
+    
+    if($("#passphrase").val().length == 0) {
+      alert("Passphrase need to be specified.");
+      return;
+    }
+    
     $("#container").css("overflow", "hidden");
     $("#formRow").hide();
-    $("#password").text("############");
+    $("#password").text("########");
     $("#passwordRow").show();
     generatePassword($("#site").val(), $("#passphrase").val());
     bindPasswordRowEvents();

@@ -1,4 +1,4 @@
 getmypass
 =========
 
-Firefox OS application to generate password.
+Password generator application - Firefox OS.
